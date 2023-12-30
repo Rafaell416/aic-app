@@ -1,0 +1,19 @@
+{
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "todohighlight.keywords": [
+    {
+      "text": "NOTE:",
+      "color": "#FFFFFF",
+      "backgroundColor": "#6D87A4",
+      "overviewRulerColor": "#FFFFFF"
+    }
+  ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  "editor.formatOnSave": true
+}

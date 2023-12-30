@@ -1,19 +1,20 @@
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StatusBar } from 'expo-status-bar'
-import Home from '../screens/Home'
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
 
-const Stack = createNativeStackNavigator<RoutesParamList>()
+import Home from "../screens/Home";
+
+const Stack = createNativeStackNavigator<RoutesParamList>();
 
 function AppRoutes() {
   return (
     <NavigationContainer>
-      <StatusBar style='dark' />
+      <StatusBar style="dark" />
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name="Home" component={Home} />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
 }
 
-export default AppRoutes
+export default AppRoutes;

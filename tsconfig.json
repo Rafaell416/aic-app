@@ -1,6 +1,27 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "target": "esnext",
+    "module": "CommonJS",
+    "lib": ["es6"],
+    "allowJs": true,
+    "maxNodeModuleJsDepth": 10,
+    "resolveJsonModule": true,
+    "jsx": "react-native",
+    "noEmit": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@screens/*": ["./src/screens/*"],
+      "@components/*": ["./src/components/*"],
+      "@theme/*": ["./src/theme/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@api/*": ["./src/api/*"],
+      "@screns/*": ["./src/screens/*"]
+    },
+    "allowSyntheticDefaultImports": true
   }
 }
