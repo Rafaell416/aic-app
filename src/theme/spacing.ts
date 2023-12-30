@@ -1,0 +1,25 @@
+import { normalize, normalizeHeight } from "@utils/normalize";
+
+export default {
+  none: 0,
+  "x-2": normalize(2),
+  "y-2": normalizeHeight(2),
+  "x-4": normalize(4),
+  "y-4": normalizeHeight(4),
+  "x-6": normalize(6),
+  "y-6": normalizeHeight(6),
+  "x-8": normalize(8),
+  "y-8": normalizeHeight(8),
+  "x-10": normalize(10),
+  "y-10": normalizeHeight(10),
+  "x-16": normalize(16),
+  "y-16": normalizeHeight(16),
+  "x-20": normalize(20),
+  "y-20": normalizeHeight(20),
+  "x-22": normalize(22),
+  "y-22": normalizeHeight(22),
+  "x-24": normalize(24),
+  "y-24": normalizeHeight(24),
+  "x-32": normalize(32),
+  "y-32": normalizeHeight(32),
+};

@@ -1,0 +1,21 @@
+export default {
+  primary: "",
+  white: "#FFFFFF",
+  black: "#000000",
+  gray: {
+    one: "#6A6A6A",
+    two: "#7A7A7A",
+    three: "#858585",
+    four: "#8F8F8F",
+    five: "#999999",
+    six: "#A3A3A3",
+    seven: "#ADADAD",
+    eight: "#B8B8B8",
+    nine: "#C2C2C2",
+    ten: "#CCCCCC",
+    eleven: "#D6D6D6",
+    twelve: "#E0E0E0",
+    thirteen: "#EBEBEB",
+    fourteen: "#F5F5F5",
+  },
+};

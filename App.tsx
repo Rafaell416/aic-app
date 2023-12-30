@@ -1,4 +1,5 @@
 import { useCachedResources } from "@hooks/useCachedResources";
+import { ThemeProvider } from "@theme/ThemeProvider";
 import * as SplashScreen from "expo-splash-screen";
 import { StyleSheet, View } from "react-native";
 
@@ -14,9 +15,11 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <AppRoutes />
-    </View>
+    <ThemeProvider>
+      <View style={styles.container}>
+        <AppRoutes />
+      </View>
+    </ThemeProvider>
   );
 }
 
