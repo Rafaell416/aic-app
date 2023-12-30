@@ -1,0 +1,3 @@
+type RoutesParamList = {
+  Home: undefined;
+};

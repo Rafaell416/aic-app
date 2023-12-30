@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useCallback } from 'react'
 import { useFonts } from 'expo-font'
 import * as SplashScreen from 'expo-splash-screen'
+import AppRoutes from './src/routes'
 
 SplashScreen.preventAutoHideAsync()
 
@@ -29,12 +30,7 @@ export default function App() {
     return null
   }
   return (
-    <View style={styles.container} onLayout={onLayoutRootView}>
-      <Text style={{fontFamily: 'PlayfairDisplay-Medium'}}>Open up App.tsx to start working on your app!</Text>
-      <Text style={{fontFamily: 'ProzaLibre-Regular'}}>Open up App.tsx to start working on your app!</Text>
-
-      <StatusBar style="auto" />
-    </View>
+    <AppRoutes />
   );
 }
 
