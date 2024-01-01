@@ -1,7 +1,8 @@
 export default {
   primary: "",
   white: "#FFFFFF",
-  black: "#000000",
+  black: "#1a1a1a",
+  brown: "#7e746d",
   gray: {
     one: "#6A6A6A",
     two: "#7A7A7A",

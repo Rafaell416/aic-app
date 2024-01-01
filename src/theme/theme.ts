@@ -1,5 +1,5 @@
 import { createTheme } from "@shopify/restyle";
-import { normalize } from "@utils/normalize";
+import { normalize, normalizeHeight } from "@utils/normalize";
 
 import colors from "./colors";
 import fontFamilies from "./fontFamilies";
@@ -27,6 +27,7 @@ const theme = createTheme({
     grayThirteen: colors.gray.thirteen,
     grayFourteen: colors.gray.fourteen,
     transparent: "transparent",
+    brown: colors.brown,
   },
   spacing,
   breakpoints: {
@@ -34,10 +35,21 @@ const theme = createTheme({
     tablet: 769,
   },
   textVariants: {
+    title: {
+      color: "black",
+      fontFamily: fontFamilies.PlayfairDisplayRegular,
+      fontSize: normalize(22),
+    },
     body: {
       color: "grayFive",
       fontFamily: fontFamilies.ProzaLibreRegular,
-      fontSize: normalize(16),
+      fontSize: normalize(15),
+      lineHeight: normalizeHeight(19),
+    },
+    label: {
+      color: "grayThree",
+      fontFamily: fontFamilies.ProzaLibreLight,
+      fontSize: normalize(11),
     },
   },
   buttonVariants: {},
