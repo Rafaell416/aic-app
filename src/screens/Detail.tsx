@@ -4,6 +4,7 @@ import HTMLSection from "@components/common/HTMLSection";
 import Text, { AnimatedText } from "@components/common/Text";
 import Hero from "@components/detail/Hero";
 import { Feather as Icon } from "@expo/vector-icons";
+import useFavoriteEvents from "@hooks/events/useFavoriteEvents";
 import colors from "@theme/colors";
 import { memo } from "react";
 import { StyleSheet, ScrollView } from "react-native";
@@ -12,26 +13,37 @@ import { DetailsRouteProp } from "src/@types/navigation";
 
 const Detail: React.FC<{ route: DetailsRouteProp }> = ({
   route: {
-    params: { event, sharedTransitionTag },
+    params: { event },
   },
 }) => {
+  const { toggleEventFav, isEventSaved } = useFavoriteEvents();
+  const { saved } = isEventSaved(event);
+
   return (
     <ScrollView>
       <Box flex={1} backgroundColor="white" paddingBottom="y-32">
         <Hero
           image_url={event.image_url}
-          sharedTransitionTag={sharedTransitionTag}
+          onClickSaveScheduleButton={() => {}}
+          onClickFavButton={() => toggleEventFav(event)}
+          eventSaved={saved}
         />
         {event?.date_display && (
           <Box marginHorizontal="x-20" marginTop="y-20">
-            <Text variant="label">{event.date_display}</Text>
+            <AnimatedText
+              entering={FadeIn.delay(150).duration(1000)}
+              exiting={FadeOut}
+              variant="label"
+            >
+              {event.date_display}
+            </AnimatedText>
           </Box>
         )}
         <AnimatedText
           marginTop="y-6"
           variant="title"
           marginLeft="x-20"
-          entering={FadeIn.delay(100)}
+          entering={FadeIn.delay(150).duration(1000)}
           exiting={FadeOut}
         >
           {event.title}
@@ -41,7 +53,7 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
           marginVertical="y-10"
           marginHorizontal="x-20"
           textAlign="justify"
-          entering={FadeIn.delay(100)}
+          entering={FadeIn.delay(300).duration(1000)}
           exiting={FadeOut}
         >
           <HTMLSection content={event.description} />

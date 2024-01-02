@@ -1,7 +1,7 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Detail from "@screens/Detail";
-import Saved from "@screens/Saved";
+import Favorite from "@screens/Favorite";
 import { StatusBar } from "expo-status-bar";
 import { RootStackParamsList } from "src/@types/navigation";
 
@@ -17,12 +17,11 @@ function AppRoutes() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
-          animation: "fade",
-          animationDuration: 100,
         }}
       >
         <Stack.Screen name={ScreenNames.Home} component={Home} />
         <Stack.Screen name={ScreenNames.Detail} component={Detail} />
+        <Stack.Screen name={ScreenNames.FavoriteEvents} component={Favorite} />
       </Stack.Navigator>
     </NavigationContainer>
   );

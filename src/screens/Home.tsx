@@ -1,18 +1,12 @@
 import Box from "@components/common/Box";
+import EventsList from "@components/common/EventsList";
 import Text from "@components/common/Text";
-import EventCard from "@components/home/EventCard";
 import Header from "@components/home/Header";
-import useAppNavigation from "@hooks/useAppNavigation";
-import useEvents from "@hooks/useEvents";
+import useEvents from "@hooks/events/useEvents";
 import { memo } from "react";
-import { FlatList, Pressable, RefreshControl } from "react-native";
-
-import { ScreenNames } from "../routes/screenNames";
 
 function Home() {
-  const navigation = useAppNavigation();
-  const { loading, error, events, refresh } = useEvents();
-  console.log({ loading, error, events });
+  const { loading, events, refresh } = useEvents();
   if (loading) {
     return (
       <Box flex={1} backgroundColor="white">
@@ -26,29 +20,7 @@ function Home() {
   return (
     <Box flex={1} backgroundColor="white">
       <Header />
-      <FlatList
-        data={events}
-        keyExtractor={(item: Event) => String(item.id)}
-        showsVerticalScrollIndicator={false}
-        refreshControl={
-          <RefreshControl refreshing={loading} onRefresh={refresh} />
-        }
-        renderItem={({ item: event, index }) => {
-          const sharedTransitionTag = "sharedTransitionTag" + index;
-          return (
-            <Pressable
-              onPress={() =>
-                navigation.navigate(ScreenNames.Detail, {
-                  event,
-                  sharedTransitionTag,
-                })
-              }
-            >
-              <EventCard {...event} sharedTransitionTag={sharedTransitionTag} />
-            </Pressable>
-          );
-        }}
-      />
+      <EventsList events={events} loading={loading} refresh={refresh} />
     </Box>
   );
 }

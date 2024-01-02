@@ -28,6 +28,7 @@ const theme = createTheme({
     grayFourteen: colors.gray.fourteen,
     transparent: "transparent",
     brown: colors.brown,
+    red: colors.red,
   },
   spacing,
   breakpoints: {

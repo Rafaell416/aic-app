@@ -1,7 +1,7 @@
 const enum ScreenNames {
   Home = "Home",
   Detail = "Detail",
-  Saved = "Saved",
+  FavoriteEvents = "FavoriteEvents",
 }
 
 export { ScreenNames };

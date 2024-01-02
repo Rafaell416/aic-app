@@ -3,10 +3,9 @@ import type { ScreenNames } from "src/routes/screenNames";
 
 type RootStackParamsList = {
   [ScreenNames.Home]: undefined;
-  Saved: undefined;
+  [ScreenNames.FavoriteEvents]: undefined;
   [ScreenNames.Detail]: {
     event: Event;
-    sharedTransitionTag: string;
   };
 };
 

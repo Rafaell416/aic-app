@@ -1,13 +1,11 @@
-import Box, { AnimatedBox } from "@components/common/Box";
+import Box from "@components/common/Box";
 import FreeBadge from "@components/common/FreeBadge";
 import HTMLSection from "@components/common/HTMLSection";
 import Image from "@components/common/Image";
 import Text from "@components/common/Text";
 import { StyleSheet } from "react-native";
 
-interface EventCardProps extends Event {
-  sharedTransitionTag: string;
-}
+interface EventCardProps extends Event {}
 
 const EventCard: React.FC<EventCardProps> = ({
   title,
@@ -15,7 +13,6 @@ const EventCard: React.FC<EventCardProps> = ({
   is_free,
   image_url,
   date_display,
-  sharedTransitionTag,
 }) => {
   return (
     <Box width="100%" paddingHorizontal="x-20" paddingTop="y-10">
@@ -33,7 +30,6 @@ const EventCard: React.FC<EventCardProps> = ({
         >
           <Image
             source={image_url}
-            sharedTransitionTag={sharedTransitionTag}
             style={{
               height: "100%",
               width: "100%",

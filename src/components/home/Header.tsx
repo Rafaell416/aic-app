@@ -9,6 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 
+import { ScreenNames } from "../../routes/screenNames";
+
 interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = ({}) => {
@@ -34,10 +36,10 @@ const Header: React.FC<HeaderProps> = ({}) => {
           />
           <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => navigation.navigate("Saved")}
+            onPress={() => navigation.navigate(ScreenNames.FavoriteEvents)}
           >
             <Box marginBottom="y-2">
-              <Text variant="body">Saved Events</Text>
+              <Text variant="body">Favorite Events</Text>
             </Box>
           </TouchableOpacity>
         </Box>
