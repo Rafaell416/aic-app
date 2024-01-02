@@ -1,7 +1,7 @@
 async function fetchEvents() {
   try {
     const response = await fetch(
-      "https://api.artic.edu/api/v1/events?limit=30"
+      "https://api.artic.edu/api/v1/events?limit=100"
     );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
