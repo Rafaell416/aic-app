@@ -1,13 +1,14 @@
-import colors from "./colors";
-
 export default {
   android: {
-    elevation: 7,
+    elevation: 5,
   },
   ios: {
-    shadowColor: colors.gray.thirteen,
-    shadowOffset: { height: 3, width: 0 },
-    shadowOpacity: 2,
-    shadowRadius: 6,
+    shadowColor: "grayFive",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
 };

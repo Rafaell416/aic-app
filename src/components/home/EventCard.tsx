@@ -1,47 +1,72 @@
-import Box from "@components/common/Box";
+import Box, { AnimatedBox } from "@components/common/Box";
+import Image from "@components/common/Image";
 import Text from "@components/common/Text";
 import { StyleSheet } from "react-native";
 
-interface EventCardProps {}
+interface EventCardProps extends Event {
+  sharedTransitionTag: string;
+}
 
-const EventCard: React.FC<EventCardProps> = ({}) => {
+const EventCard: React.FC<EventCardProps> = ({
+  title,
+  short_description,
+  is_free,
+  image_url,
+  sharedTransitionTag,
+}) => {
   return (
     <Box width="100%" paddingHorizontal="x-20" paddingVertical="y-10">
       <Box
         borderBottomWidth={StyleSheet.hairlineWidth}
-        borderBottomColor="grayEight"
+        borderBottomColor="grayEleven"
         paddingBottom="y-16"
       >
-        <Box width="100%" height={200} backgroundColor="grayEight" />
+        <Box
+          width="100%"
+          height={200}
+          backgroundColor="grayEight"
+          borderRadius={5}
+          overflow="hidden"
+        >
+          <Image
+            source={image_url}
+            sharedTransitionTag={sharedTransitionTag}
+            style={{
+              height: "100%",
+              width: "100%",
+            }}
+            alt={title}
+            contentFit="contain"
+          />
+        </Box>
         <Text variant="label" marginTop="y-10">
           TOUR
         </Text>
         <Text marginTop="y-6" variant="title">
-          Visita Guiada en Español
+          {title}
         </Text>
         <Text variant="body" marginVertical="y-12">
-          ¿Quieres explorar el museo, pero no sabes por dónde empezar? Únete a
-          un guía experto para un recorrido de 45 minutos sobre obras de arte
-          icónicas y otros tesoros menos conocidos del museo. Este recorrido
-          comienza en el Ala Moderna de Griffin Court.
+          {short_description}
         </Text>
         <Text variant="body" marginTop="y-2">
-          2:00 - 2:45
+          Thurs, Jan 4 | 12:00–2:00
         </Text>
-        <Box
-          backgroundColor="brown"
-          maxWidth={60}
-          paddingVertical="y-8"
-          paddingHorizontal="x-12"
-          borderRadius={2}
-          alignItems="center"
-          justifyContent="center"
-          marginTop="y-16"
-        >
-          <Text variant="label" color="white">
-            FREE
-          </Text>
-        </Box>
+        {is_free && (
+          <Box
+            backgroundColor="brown"
+            maxWidth={60}
+            paddingVertical="y-8"
+            paddingHorizontal="x-12"
+            borderRadius={2}
+            alignItems="center"
+            justifyContent="center"
+            marginTop="y-16"
+          >
+            <Text variant="label" color="white">
+              FREE
+            </Text>
+          </Box>
+        )}
       </Box>
     </Box>
   );

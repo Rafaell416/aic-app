@@ -1,7 +1,8 @@
 import { useCachedResources } from "@hooks/useCachedResources";
 import { ThemeProvider } from "@theme/ThemeProvider";
 import * as SplashScreen from "expo-splash-screen";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import AppRoutes from "./src/routes";
 
@@ -16,9 +17,9 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <View style={styles.container}>
+      <GestureHandlerRootView style={styles.container}>
         <AppRoutes />
-      </View>
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
