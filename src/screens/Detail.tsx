@@ -1,5 +1,6 @@
 import Box from "@components/common/Box";
-import Image from "@components/common/Image";
+import FreeBadge from "@components/common/FreeBadge";
+import HTMLSection from "@components/common/HTMLSection";
 import Text, { AnimatedText } from "@components/common/Text";
 import Hero from "@components/detail/Hero";
 import { Feather as Icon } from "@expo/vector-icons";
@@ -7,37 +8,25 @@ import colors from "@theme/colors";
 import { memo } from "react";
 import { StyleSheet, ScrollView } from "react-native";
 import { FadeIn, FadeOut } from "react-native-reanimated";
-import RenderHTML, {
-  CustomBlockRenderer,
-  CustomTagRendererRecord,
-  CustomTextualRenderer,
-  useIMGElementProps,
-} from "react-native-render-html";
 import { DetailsRouteProp } from "src/@types/navigation";
 
 const Detail: React.FC<{ route: DetailsRouteProp }> = ({
   route: {
-    params: { source, sharedTransitionTag },
+    params: { event, sharedTransitionTag },
   },
 }) => {
   return (
     <ScrollView>
-      <Box flex={1} backgroundColor="white">
+      <Box flex={1} backgroundColor="white" paddingBottom="y-32">
         <Hero
-          image_url={source.image_url}
+          image_url={event.image_url}
           sharedTransitionTag={sharedTransitionTag}
         />
-        <Box
-          marginHorizontal="x-20"
-          marginTop="y-20"
-          flexDirection="row"
-          justifyContent="space-between"
-        >
-          <Text variant="label">TOUR</Text>
-          <Text variant="label" marginLeft="x-4">
-            Thurs, Jan 4 | 12:00–2:00
-          </Text>
-        </Box>
+        {event?.date_display && (
+          <Box marginHorizontal="x-20" marginTop="y-20">
+            <Text variant="label">{event.date_display}</Text>
+          </Box>
+        )}
         <AnimatedText
           marginTop="y-6"
           variant="title"
@@ -45,7 +34,7 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
           entering={FadeIn.delay(100)}
           exiting={FadeOut}
         >
-          Visita Guiada en Español
+          {event.title}
         </AnimatedText>
         <AnimatedText
           variant="body"
@@ -55,11 +44,7 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
           entering={FadeIn.delay(100)}
           exiting={FadeOut}
         >
-          <RenderHTML
-            source={{
-              html: source.description,
-            }}
-          />
+          <HTMLSection content={event.description} />
         </AnimatedText>
         <Box
           width="88%"
@@ -71,24 +56,14 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
         <Box flexDirection="row" alignItems="center" marginLeft="x-20">
           <Icon size={15} name="map-pin" color={colors.gray.six} />
           <Text variant="label" marginLeft="x-4">
-            {source.location}
+            {event.location}
           </Text>
         </Box>
-        <Box
-          backgroundColor="brown"
-          maxWidth={60}
-          paddingVertical="y-8"
-          paddingHorizontal="x-12"
-          borderRadius={2}
-          alignItems="center"
-          justifyContent="center"
-          marginTop="y-16"
-          marginLeft="x-20"
-        >
-          <Text variant="label" color="white">
-            FREE
-          </Text>
-        </Box>
+        {event.is_free && (
+          <Box marginLeft="x-20">
+            <FreeBadge />
+          </Box>
+        )}
       </Box>
     </ScrollView>
   );

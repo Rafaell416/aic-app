@@ -5,7 +5,7 @@ type RootStackParamsList = {
   [ScreenNames.Home]: undefined;
   Saved: undefined;
   [ScreenNames.Detail]: {
-    source: Event;
+    event: Event;
     sharedTransitionTag: string;
   };
 };

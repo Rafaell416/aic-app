@@ -50,3 +50,30 @@ interface Event {
   updated_at: string;
   timestamp: string;
 }
+
+type Pagination = {
+  total: number;
+  limit: number;
+  offset: number;
+  total_pages: number;
+  current_page: number;
+  next_url: string;
+};
+
+type Info = {
+  license_text: string;
+  license_links: string[];
+  version: string;
+};
+
+type Config = {
+  iiif_url: string;
+  website_url: string;
+};
+
+interface EventsApiResponse {
+  pagination: Pagination;
+  data: Event[];
+  info: Info;
+  config: Config;
+}

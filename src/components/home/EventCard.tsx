@@ -1,4 +1,6 @@
 import Box, { AnimatedBox } from "@components/common/Box";
+import FreeBadge from "@components/common/FreeBadge";
+import HTMLSection from "@components/common/HTMLSection";
 import Image from "@components/common/Image";
 import Text from "@components/common/Text";
 import { StyleSheet } from "react-native";
@@ -12,13 +14,14 @@ const EventCard: React.FC<EventCardProps> = ({
   short_description,
   is_free,
   image_url,
+  date_display,
   sharedTransitionTag,
 }) => {
   return (
-    <Box width="100%" paddingHorizontal="x-20" paddingVertical="y-10">
+    <Box width="100%" paddingHorizontal="x-20" paddingTop="y-10">
       <Box
         borderBottomWidth={StyleSheet.hairlineWidth}
-        borderBottomColor="grayEleven"
+        borderBottomColor="grayFive"
         paddingBottom="y-16"
       >
         <Box
@@ -39,34 +42,16 @@ const EventCard: React.FC<EventCardProps> = ({
             contentFit="contain"
           />
         </Box>
-        <Text variant="label" marginTop="y-10">
-          TOUR
-        </Text>
         <Text marginTop="y-6" variant="title">
           {title}
         </Text>
-        <Text variant="body" marginVertical="y-12">
-          {short_description}
-        </Text>
+        <Box marginVertical="y-4">
+          <HTMLSection content={short_description} />
+        </Box>
         <Text variant="body" marginTop="y-2">
-          Thurs, Jan 4 | 12:00–2:00
+          {date_display}
         </Text>
-        {is_free && (
-          <Box
-            backgroundColor="brown"
-            maxWidth={60}
-            paddingVertical="y-8"
-            paddingHorizontal="x-12"
-            borderRadius={2}
-            alignItems="center"
-            justifyContent="center"
-            marginTop="y-16"
-          >
-            <Text variant="label" color="white">
-              FREE
-            </Text>
-          </Box>
-        )}
+        {is_free && <FreeBadge />}
       </Box>
     </Box>
   );
