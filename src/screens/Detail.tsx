@@ -11,6 +11,8 @@ import { StyleSheet, ScrollView } from "react-native";
 import { FadeIn, FadeOut } from "react-native-reanimated";
 import { DetailsRouteProp } from "src/@types/navigation";
 
+import { saveEventToCalendar } from "../../modules/calendar-module";
+
 const Detail: React.FC<{ route: DetailsRouteProp }> = ({
   route: {
     params: { event },
@@ -19,12 +21,26 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
   const { toggleEventFav, isEventSaved } = useFavoriteEvents();
   const { saved } = isEventSaved(event);
 
+  const handleSaveEventToCalendar = () => {
+    saveEventToCalendar(
+      "Test event",
+      "2019-11-15T00:00:00-06:00",
+      "2019-11-15T00:00:00-06:00"
+    )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
     <ScrollView>
       <Box flex={1} backgroundColor="white" paddingBottom="y-32">
         <Hero
           image_url={event.image_url}
-          onClickSaveScheduleButton={() => {}}
+          onClickSaveScheduleButton={handleSaveEventToCalendar}
           onClickFavButton={() => toggleEventFav(event)}
           eventSaved={saved}
         />
