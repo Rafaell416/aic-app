@@ -11,20 +11,19 @@ public class CalendarModule: Module {
       title: String,
       startDate: String,
       endDate: String,
-      resolve: @escaping (Any?) -> Void,
-      reject: @escaping (String, String, Error?) -> Void
+      promise: Promise
     ) in
       let dateFormatter = ISO8601DateFormatter()
 
       guard let start = dateFormatter.date(from: startDate),
             let end = dateFormatter.date(from: endDate) else {
-        reject("E_DATE_ERROR", "Invalid date format", nil)
+        promise.reject("E_DATE_ERROR", "Invalid date format")
         return
       }
 
       self.eventStore.requestAccess(to: .event) { granted, error in
         if let error = error {
-          reject("E_CALENDAR_ACCESS_DENIED", "Access to the calendar was denied", error)
+          promise.reject("E_CALENDAR_ACCESS_DENIED", "Access to the calendar was denied")
           return
         }
 
@@ -37,12 +36,12 @@ public class CalendarModule: Module {
 
           do {
             try self.eventStore.save(event, span: .thisEvent)
-            resolve(event.eventIdentifier)
+            promise.resolve(event.eventIdentifier)
           } catch let error as NSError {
-            reject("E_CALENDAR_SAVE_ERROR", "Could not save event to the calendar", error)
+            promise.reject("E_CALENDAR_SAVE_ERROR", "Could not save event to the calendar")
           }
         } else {
-          reject("E_CALENDAR_ACCESS_DENIED", "Access to the calendar was not granted", nil)
+          promise.reject("E_CALENDAR_ACCESS_DENIED", "Access to the calendar was not granted")
         }
       }
     }

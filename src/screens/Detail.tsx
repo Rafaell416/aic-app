@@ -6,8 +6,9 @@ import Hero from "@components/detail/Hero";
 import { Feather as Icon } from "@expo/vector-icons";
 import useFavoriteEvents from "@hooks/events/useFavoriteEvents";
 import colors from "@theme/colors";
+import modifyTimeInISODate from "@utils/modifyTimeInISODate";
 import { memo } from "react";
-import { StyleSheet, ScrollView } from "react-native";
+import { StyleSheet, ScrollView, Alert } from "react-native";
 import { FadeIn, FadeOut } from "react-native-reanimated";
 import { DetailsRouteProp } from "src/@types/navigation";
 
@@ -22,16 +23,17 @@ const Detail: React.FC<{ route: DetailsRouteProp }> = ({
   const { saved } = isEventSaved(event);
 
   const handleSaveEventToCalendar = () => {
-    saveEventToCalendar(
-      "Test event",
-      "2019-11-15T00:00:00-06:00",
-      "2019-11-15T00:00:00-06:00"
-    )
-      .then((response) => {
-        console.log(response);
+    const start = modifyTimeInISODate(event.start_date, event.start_time);
+    const end = modifyTimeInISODate(event.end_date, event.end_time);
+    saveEventToCalendar(event.title, start, end)
+      .then((_) => {
+        Alert.alert("Done ✅", "Event saved in your calendar");
       })
       .catch((e) => {
-        console.log(e);
+        Alert.alert(
+          "Error",
+          "There was an error saving this event to your calendar, please try again."
+        );
       });
   };
 

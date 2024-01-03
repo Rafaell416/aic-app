@@ -3,6 +3,7 @@ import FreeBadge from "@components/common/FreeBadge";
 import HTMLSection from "@components/common/HTMLSection";
 import Image from "@components/common/Image";
 import Text from "@components/common/Text";
+import { memo } from "react";
 import { StyleSheet } from "react-native";
 
 interface EventCardProps extends Event {}
@@ -53,4 +54,4 @@ const EventCard: React.FC<EventCardProps> = ({
   );
 };
 
-export default EventCard;
+export default memo(EventCard);
